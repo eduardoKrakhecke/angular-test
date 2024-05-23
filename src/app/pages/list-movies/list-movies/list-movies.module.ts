@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ListMoviesComponent } from './list-movies/list-movies.component';
 import { ListMoviesRouting } from "@app/pages/list-movies/list-movies/list-movies-routing";
+
+import { ListMoviesComponent } from './list-movies/list-movies.component';
+
 
 
 
@@ -10,8 +13,9 @@ import { ListMoviesRouting } from "@app/pages/list-movies/list-movies/list-movie
     ListMoviesComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
-    ListMoviesRouting
+    ListMoviesRouting,
   ]
 })
 export class ListMoviesModule { }
