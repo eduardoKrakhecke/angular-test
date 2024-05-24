@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { DashboardService } from "@app/pages/dashboard/services/dashboard.service";
-import { Studio } from "@app/pages/dashboard/model/studio";
-import { MultipleWinners } from "@app/pages/dashboard/model/multiple-winners";
-import { IntervalWinner } from "@app/pages/dashboard/model/interval-winner";
+import { Studio, StudiosResponse } from "@app/pages/dashboard/model/studio";
+import { MultipleWinners, MultipleWinnersResponse } from "@app/pages/dashboard/model/multiple-winners";
+import { IntervalWinner, IntervalWinnerResponse } from "@app/pages/dashboard/model/interval-winner";
 import { Movie } from "@app/pages/list-movies/list-movies/model/movie";
 
 
@@ -55,7 +55,7 @@ export class DashboardComponent {
 
   loadStudios(): void {
     this.dashboardService.getStudios().subscribe(
-      (response) => {
+      (response: StudiosResponse) => {
         this.studios = response.studios.sort((a: any, b: any) => b.winCount - a.winCount).slice(0, 3)
       },
       (error: Error) => {
@@ -66,7 +66,7 @@ export class DashboardComponent {
 
   loadMultipleWinners(): void {
     this.dashboardService.getMultipleWinners().subscribe(
-      (response) => {
+      (response: MultipleWinnersResponse) => {
         this.multipleWinners = response.years
       },
       (error: Error) => {
@@ -77,7 +77,7 @@ export class DashboardComponent {
 
   loadIntervalWinner(): void {
     this.dashboardService.getIntervalWinner().subscribe(
-      (response) => {
+      (response: IntervalWinnerResponse) => {
         this.intervalWinnersMax = response.max
         this.intervalWinnersMin = response.min
       },
@@ -89,7 +89,7 @@ export class DashboardComponent {
 
   loadMovieByYear(): void {
     this.dashboardService.getMovieByYear(this.searchText).subscribe(
-      (response) => {
+      (response: Movie[]) => {
         this.movies = response
       },
       (error: Error) => {
