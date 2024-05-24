@@ -26,19 +26,24 @@ export class ListMoviesComponent {
   }
 
   loadMovies(page: number = 0): void {
+    console.log(`Loading movies for page: ${page}`);
     this.listMoviesService.getMovies(page, this.itemsPerPage, true, ).subscribe((response) => {
       this.movies = response.content;
       this.totalPages = response.totalPages;
       this.totalItems = response.totalElements;
-      this.filterData();
+      this.filterData(false)
+    }, (error: Error) => {
+      console.error(error);
     });
   }
 
-  filterData(): void {
+  filterData(resetPage: boolean = true): void {
     this.filteredMovies = this.movies.filter(movie =>
       movie.title.toLowerCase().includes(this.searchText.toLowerCase())
     );
-    this.currentPage = 1;
+    if (resetPage) {
+      this.currentPage = 1;
+    }
     this.paginateItems();
   }
 
@@ -46,13 +51,19 @@ export class ListMoviesComponent {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;
     this.paginatedMovies = this.filteredMovies.slice(start, end);
+    console.log(`Current page: ${this.currentPage}, Paginated items:`, this.paginatedMovies);
   }
 
   setPage(page: number): void {
+    console.log('set page')
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
       this.loadMovies(page - 1);
     }
+  }
+
+  isPageActive(page: number): boolean {
+    return this.currentPage === page;
   }
 
 }
