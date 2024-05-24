@@ -1,1 +1,40 @@
-<p>dashboard works!</p>
+<h5>List years multiple winners</h5>
+<app-table
+  [data]="multipleWinners"
+  [columns]="columnsMultipleWinners">
+</app-table>
+
+<hr/>
+
+<h5>Top 3 studios with winners</h5>
+<app-table
+  [columns]="columnsStudios"
+  [data]="studios">
+</app-table>
+
+<hr/>
+
+<h5>Producer with longest and shortes interval between wins</h5>
+<h6>Maximum</h6>
+<app-table
+  [data]="intervalWinnersMax"
+  [columns]="columnsIntervalWinners">
+</app-table>
+
+<h6>Minimum</h6>
+<app-table
+  [data]="intervalWinnersMin"
+  [columns]="columnsIntervalWinners">
+</app-table>
+
+<hr/>
+
+<h5>List movie winners by year</h5>
+<div class="input-group input-group-sm mb-3">
+  <input type="number" class="form-control" [(ngModel)]="searchText">
+</div>
+<button (click)="loadMovieByYear()" [disabled]="!searchText" type="button" class="btn btn-primary btn-sm"><i class="bi bi-search"></i></button>
+<app-table
+  [data]="movies"
+  [columns]="columnsListMoviesByYear">
+</app-table>
