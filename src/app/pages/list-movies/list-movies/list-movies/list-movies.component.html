@@ -1,25 +1,34 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-12">
-      <input type="text" class="form-control mb-3" placeholder="Search..." [(ngModel)]="searchText" (ngModelChange)="filterData()">
       <table class="table table-bordered table-hover table-sm">
         <thead>
         <tr>
           <th>Id</th>
           <th>Title</th>
-          <th>Year</th>
+          <th>
+            Year
+            <div class="input-group input-group-sm mb-1">
+              <input type="number" class="form-control" [(ngModel)]="yearFilter" (keyup)="loadMovies(currentPage - 1)">
+            </div>
+          </th>
           <th>Studios</th>
-          <th>Producers</th>
-          <th>Winner</th>
+          <th>
+            Winner
+            <select class="form-select form-select-sm" [(ngModel)]="winnerFilter" (change)="loadMovies(currentPage - 1)">
+              <option [ngValue]="undefined">Yes/No</option>
+              <option [ngValue]="true">Yes</option>
+              <option [ngValue]="false">No</option>
+            </select>
+          </th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let movie of paginatedMovies; let i = index">
+        <tr *ngFor="let movie of movies; let i = index">
           <td>{{ movie.id }}</td>
           <td>{{ movie.title }}</td>
           <td>{{ movie.year }}</td>
           <td>{{ movie.studios.join(', ') }}</td>
-          <td>{{ movie.producers.join(', ') }}</td>
           <td>{{ movie.winner ? 'Yes' : 'No' }}</td>
         </tr>
         </tbody>
