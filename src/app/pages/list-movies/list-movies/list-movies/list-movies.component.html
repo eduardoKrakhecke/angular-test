@@ -9,7 +9,11 @@
           <th>
             Year
             <div class="input-group input-group-sm mb-1">
-              <input type="number" class="form-control" [(ngModel)]="yearFilter" (keyup)="loadMovies(currentPage - 1)">
+              <input type="text"
+                     appNumbersOnly
+                     maxlength="4"
+                     class="form-control"
+                     [(ngModel)]="yearFilter" (keyup)="loadMovies(currentPage - 1)">
             </div>
           </th>
           <th>Studios</th>

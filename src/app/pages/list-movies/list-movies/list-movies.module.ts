@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ListMoviesRouting } from "@app/pages/list-movies/list-movies/list-movies-routing";
 
 import { ListMoviesComponent } from './list-movies/list-movies.component';
-
-
+import { NumbersOnlyDirective } from "@app/directives/numbers-only.directive";
 
 
 @NgModule({
   declarations: [
-    ListMoviesComponent
+    ListMoviesComponent,
+    NumbersOnlyDirective
   ],
   imports: [
     FormsModule,
@@ -18,4 +18,5 @@ import { ListMoviesComponent } from './list-movies/list-movies.component';
     ListMoviesRouting,
   ]
 })
-export class ListMoviesModule { }
+export class ListMoviesModule {
+}

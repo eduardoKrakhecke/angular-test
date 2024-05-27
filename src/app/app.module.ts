@@ -7,9 +7,10 @@ import { AppComponent } from './app.component';
 import { MenuModule } from "@app/shared-components/menu/menu.module";
 
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
