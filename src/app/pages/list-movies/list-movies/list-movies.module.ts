@@ -4,18 +4,18 @@ import { CommonModule } from '@angular/common';
 import { ListMoviesRouting } from "@app/pages/list-movies/list-movies/list-movies-routing";
 
 import { ListMoviesComponent } from './list-movies/list-movies.component';
-import { NumbersOnlyDirective } from "@app/directives/numbers-only.directive";
+import { SharedModule } from "@app/shared/shared.module";
 
 
 @NgModule({
   declarations: [
-    ListMoviesComponent,
-    NumbersOnlyDirective
+    ListMoviesComponent
   ],
   imports: [
     FormsModule,
     CommonModule,
     ListMoviesRouting,
+    SharedModule
   ]
 })
 export class ListMoviesModule {
