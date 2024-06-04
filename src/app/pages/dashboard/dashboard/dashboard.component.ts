@@ -88,6 +88,9 @@ export class DashboardComponent {
   }
 
   loadMovieByYear(): void {
+    if(this.searchText?.toString() === undefined || this.searchText?.toString() === '') {
+      return
+    }
     this.dashboardService.getMovieByYear(this.searchText).subscribe(
       (response: Movie[]) => {
         this.movies = response
